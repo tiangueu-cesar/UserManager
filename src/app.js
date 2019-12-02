@@ -17,4 +17,56 @@ var App = /** @class */ (function () {
     };
     return App;
 }());
+var UserController = /** @class */ (function () {
+    function UserController(userRepository) {
+        var _this = this;
+        this.userRepository = userRepository;
+        this.path = '/';
+        this.router = express.Router();
+        this.getAllUsers = function (request, response) {
+            response.send(_this.userRepository.getUsers());
+        };
+    }
+    UserController.prototype.intializeRoutes = function () {
+        this.router.get(this.path, this.getAllUsers);
+    };
+    return UserController;
+}());
+var User = /** @class */ (function () {
+    function User(vorname) {
+        this.vorname = vorname;
+    }
+    return User;
+}());
+var UserRepository = /** @class */ (function () {
+    function UserRepository() {
+        this.users = [];
+        this.lastId = 0;
+        this.initMockData();
+    }
+    UserRepository.prototype.getUsers = function () {
+        return this.users;
+    };
+    UserRepository.prototype.getNextId = function () {
+        return this.lastId++;
+    };
+    UserRepository.prototype.initMockData = function () {
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'test',
+            nachname: 'einnachname',
+            email: 'test@mail.de',
+            passwort: 'supersicher',
+            rolle: 'Admin',
+        });
+    };
+    return UserRepository;
+}());
+/*
+addUser
+
+deleteUserById
+editUserById
+getAllUsersSorted
+*/
 exports.default = App;

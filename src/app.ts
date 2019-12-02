@@ -20,4 +20,69 @@ class App {
     }
 }
 
+class UserController {
+    public path = '/';
+    public router = express.Router();
+
+    constructor(private userRepository : UserRepository) {
+    }
+
+    public intializeRoutes() {
+        this.router.get(this.path, this.getAllUsers);
+    }
+
+    getAllUsers = (request: express.Request, response: express.Response) => {
+        response.send(this.userRepository.getUsers());
+    }
+}
+
+
+class User {
+    id: number;
+    vorname: string;
+    nachname: string;
+    email: string;
+    passwort: string;
+    rolle: string;
+
+    constructor(vorname: string) { this.vorname = vorname; }
+    }
+
+class UserRepository {
+    private users: Users[] = [];
+
+    private lastId: number = 0;
+
+    public getUsers(): Users[] {
+        return this.users;
+    }
+
+
+    private getNextId() : number {
+        return this.lastId ++;
+    }
+
+    constructor() {
+        this.initMockData();
+    }
+
+    public initMockData() {
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'test',
+            nachname: 'einnachname',
+            email: 'test@mail.de',
+            passwort: 'supersicher',
+            rolle: 'Admin',
+        });
+    }
+}
+/*
+addUser
+
+deleteUserById
+editUserById
+getAllUsersSorted
+*/
+
 export default App;
