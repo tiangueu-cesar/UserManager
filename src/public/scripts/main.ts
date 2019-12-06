@@ -17,6 +17,7 @@ $(function() {
 class App {
     constructor() {
         console.log('it works, too2');
+        this.initBtns();
         this.loadUsers();
     };
 
@@ -32,9 +33,20 @@ class App {
         console.log(data);
         $('body').append(JSON.stringify(data));
     }
+
+    private initBtns() {
+        $('#neuBtn').on('click', t => {
+            alert("irgendein text");
+            let dummyUser = {"vorname": "test2",  "nachname": "einnachname2",   "email": "test@mail.de2",   "passwort": "supersicher2",  "rolle": "Admin2"};
+            $.ajax('/api/users',
+                {
+                    type: 'POST',
+                    data: JSON.stringify(dummyUser),
+                    contentType: "application/json",
+                });
+        })
+    }
 }
-
-
 
 
 $(() => {

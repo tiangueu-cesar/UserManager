@@ -18,6 +18,7 @@ var App = /** @class */ (function () {
             $('body').append(JSON.stringify(data));
         };
         console.log('it works, too2');
+        this.initBtns();
         this.loadUsers();
     }
     ;
@@ -26,6 +27,17 @@ var App = /** @class */ (function () {
         $.ajax('/api/users', // request url
         {
             success: this.createUserTable
+        });
+    };
+    App.prototype.initBtns = function () {
+        $('#neuBtn').on('click', function (t) {
+            alert("irgendein text");
+            var dummyUser = { "vorname": "test2", "nachname": "einnachname2", "email": "test@mail.de2", "passwort": "supersicher2", "rolle": "Admin2" };
+            $.ajax('/api/users', {
+                type: 'POST',
+                data: JSON.stringify(dummyUser),
+                contentType: "application/json",
+            });
         });
     };
     return App;
