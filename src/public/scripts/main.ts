@@ -43,6 +43,9 @@ class App {
                     type: 'POST',
                     data: JSON.stringify(dummyUser),
                     contentType: "application/json",
+                    success: data => {
+                        this.loadUsers();
+                    }
                 });
         })
     }

@@ -30,6 +30,7 @@ var App = /** @class */ (function () {
         });
     };
     App.prototype.initBtns = function () {
+        var _this = this;
         $('#neuBtn').on('click', function (t) {
             alert("irgendein text");
             var dummyUser = { "vorname": "test2", "nachname": "einnachname2", "email": "test@mail.de2", "passwort": "supersicher2", "rolle": "Admin2" };
@@ -37,6 +38,9 @@ var App = /** @class */ (function () {
                 type: 'POST',
                 data: JSON.stringify(dummyUser),
                 contentType: "application/json",
+                success: function (data) {
+                    _this.loadUsers();
+                }
             });
         });
     };
