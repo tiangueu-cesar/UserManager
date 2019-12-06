@@ -1,11 +1,11 @@
 ###
-GET http://localhost:5000/api/todos
+GET http://localhost:5000/api/users
 
 ###
-POST http://localhost:5000/api/todos
+POST http://localhost:5000/api/users
 Content-Type: application/json
 
-{"author":"Marcin","content":"Dolor sit amet","title":"Lorem Ipsum"}
+{"vorname": "test2",  "nachname": "einnachname2",   "email": "test@mail.de2",   "passwort": "supersicher2",  "rolle": "Admin2"}
 
 
 ###

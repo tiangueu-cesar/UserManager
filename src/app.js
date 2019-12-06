@@ -1,13 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
+var bodyParser = require("body-parser");
 var path = require("path");
 var App = /** @class */ (function () {
     function App() {
+        this.repo = new UserRepository();
+        this.controller = new UserController(this.repo);
         this.app = express();
         this.port = 5000;
         this.app.get("/", function (req, res) { res.sendFile(path.join(__dirname, 'public') + "/index.html"); });
+        this.app.use(bodyParser.json());
         this.app.use("/assets", express.static(path.join(__dirname, "public")));
+        this.app.use('/api', this.controller.router);
     }
     App.prototype.listen = function () {
         var _this = this;
@@ -21,14 +26,20 @@ var UserController = /** @class */ (function () {
     function UserController(userRepository) {
         var _this = this;
         this.userRepository = userRepository;
-        this.path = '/';
+        this.path = '/users';
         this.router = express.Router();
         this.getAllUsers = function (request, response) {
             response.send(_this.userRepository.getUsers());
         };
+        this.addUser = function (request, response) {
+            var user = request.body;
+            response.send(_this.userRepository.addUser(user));
+        };
+        this.intializeRoutes();
     }
     UserController.prototype.intializeRoutes = function () {
         this.router.get(this.path, this.getAllUsers);
+        this.router.post(this.path, this.addUser);
     };
     return UserController;
 }());
@@ -46,6 +57,11 @@ var UserRepository = /** @class */ (function () {
     }
     UserRepository.prototype.getUsers = function () {
         return this.users;
+    };
+    UserRepository.prototype.addUser = function (user) {
+        user.id = this.getNextId();
+        this.users.push(user);
+        return user;
     };
     UserRepository.prototype.getNextId = function () {
         return this.lastId++;
