@@ -14,6 +14,8 @@ $(function() {
 
 
 
+import htmlString = JQuery.htmlString;
+
 class App {
     constructor() {
         console.log('it works, too2');
@@ -30,28 +32,48 @@ class App {
     }
 
     createUserTable = (data, status, hhr) => {
-        console.log(data);
-        $('body').append(JSON.stringify(data));
-    }
+
+        $('#tab1').empty();
+        data.forEach(function (value)
+        {
+            let newrow = $('<tr/>');
+            $('#tab1').append(newrow);
+            let td1 = $('</td>');
+            newrow.append(td1);
+            td1.text(value.vorname);
+            newrow.append('<td>' + value.id + '</td>');
+            newrow.append('<td>' + value.nachname + '</td>');
+            newrow.append('<td>' + value.email + '</td>');
+            newrow.append('<td>' + value.passwort + '</td>');
+            newrow.append('<td>' + value.rolle + '</td>');
+        });
+    };
 
     private initBtns() {
         $('#neuBtn').on('click', t => {
-            alert("irgendein text");
-            let dummyUser = {"vorname": "test2",  "nachname": "einnachname2",   "email": "test@mail.de2",   "passwort": "supersicher2",  "rolle": "Admin2"};
+            let vorname: string;
+            let nachname: string;
+            let email: string;
+
+            vorname = $('#vorname').val().toString();
+            nachname = $('#nachname').val().toString();
+            email = $('#email').val().toString();
+
+            let newUser = {"vorname": vorname, "nachname": nachname,   "email": email,   "passwort": "supersicher2",  "rolle": "Admin2"};
+
             $.ajax('/api/users',
                 {
                     type: 'POST',
-                    data: JSON.stringify(dummyUser),
+                    data: JSON.stringify(newUser),
                     contentType: "application/json",
                     success: data => {
                         this.loadUsers();
                     }
                 });
         })
-    }
-}
+    }}
 
+        $(() => {
+            const app = new App();
+        });
 
-$(() => {
-    const app = new App();
-});

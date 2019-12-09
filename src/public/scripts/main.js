@@ -14,8 +14,19 @@ $(function() {
 var App = /** @class */ (function () {
     function App() {
         this.createUserTable = function (data, status, hhr) {
-            console.log(data);
-            $('body').append(JSON.stringify(data));
+            $('#tab1').empty();
+            data.forEach(function (value) {
+                var newrow = $('<tr/>');
+                $('#tab1').append(newrow);
+                var td1 = $('</td>');
+                newrow.append(td1);
+                td1.text(value.vorname);
+                newrow.append('<td>' + value.id + '</td>');
+                newrow.append('<td>' + value.nachname + '</td>');
+                newrow.append('<td>' + value.email + '</td>');
+                newrow.append('<td>' + value.passwort + '</td>');
+                newrow.append('<td>' + value.rolle + '</td>');
+            });
         };
         console.log('it works, too2');
         this.initBtns();
@@ -32,11 +43,16 @@ var App = /** @class */ (function () {
     App.prototype.initBtns = function () {
         var _this = this;
         $('#neuBtn').on('click', function (t) {
-            alert("irgendein text");
-            var dummyUser = { "vorname": "test2", "nachname": "einnachname2", "email": "test@mail.de2", "passwort": "supersicher2", "rolle": "Admin2" };
+            var vorname;
+            var nachname;
+            var email;
+            vorname = $('#vorname').val().toString();
+            nachname = $('#nachname').val().toString();
+            email = $('#email').val().toString();
+            var newUser = { "vorname": vorname, "nachname": nachname, "email": email, "passwort": "supersicher2", "rolle": "Admin2" };
             $.ajax('/api/users', {
                 type: 'POST',
-                data: JSON.stringify(dummyUser),
+                data: JSON.stringify(newUser),
                 contentType: "application/json",
                 success: function (data) {
                     _this.loadUsers();
