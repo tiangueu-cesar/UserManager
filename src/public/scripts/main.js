@@ -1,16 +1,3 @@
-/*console.log('hello world');
-
-$(function() {
-    console.log('it works');
-
-    $.ajax('/api/users',   // request url
-        {
-            success: function (data, status, xhr) {// success callback function
-                console.log(data);
-                $('body').append(JSON.stringify(data));
-            }
-        });
-});*/
 var App = /** @class */ (function () {
     function App() {
         this.createUserTable = function (data, status, hhr) {
@@ -35,13 +22,27 @@ var App = /** @class */ (function () {
     ;
     App.prototype.loadUsers = function () {
         console.log('loading the users');
-        $.ajax('/api/users', // request url
-        {
+        $.ajax('/api/users', {
             success: this.createUserTable
         });
     };
     App.prototype.initBtns = function () {
         var _this = this;
+        $('#deleteIDbtn').on('click', function (t) {
+            var id;
+            id = $('#deleteIn').val().toString();
+            $.ajax('/api/users/delete', {
+                type: 'GET',
+                data: {
+                    ID: $("#deleteIn").val().toString()
+                },
+                contentType: "application/json",
+                success: function (data) {
+                    console.log('form submitted.' + data.ID);
+                    _this.loadUsers();
+                }
+            });
+        });
         $('#neuBtn').on('click', function (t) {
             var vorname;
             var nachname;

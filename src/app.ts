@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as path from "path";
+import {url} from "inspector";
 
 class App {
     public app: express.Application;
@@ -37,6 +38,7 @@ class UserController {
     public intializeRoutes() {
         this.router.get(this.path, this.getAllUsers);
         this.router.post(this.path, this.addUser);
+        this.router.get(this.path+"/delete", this.deleteUser);
     }
 
     getAllUsers = (request: express.Request, response: express.Response) => {
@@ -46,6 +48,11 @@ class UserController {
     addUser = (request: express.Request, response: express.Response) => {
         const user: User = request.body;
         response.send(this.userRepository.addUser(user));
+    };
+
+    deleteUser = (request: express.Request, response: express.Response) => {
+        const id = Number(request.query.ID);
+        response.send(this.userRepository.deleteUser(id));
     }
 }
 
@@ -74,6 +81,16 @@ class UserRepository {
         user.id = this.getNextId();
         this.users.push(user);
         return user;
+    }
+
+    public deleteUser(id: number): boolean {
+        let index : number;
+        index = this.users.findIndex(item => item.id==id);
+        console.log("ID: "+id);
+        console.log("Index: "+ index);
+        this.users.splice(index,1);
+        console.log(this.users);
+        return true;
     }
 
     private getNextId() : number {

@@ -1,21 +1,3 @@
-/*console.log('hello world');
-
-$(function() {
-    console.log('it works');
-
-    $.ajax('/api/users',   // request url
-        {
-            success: function (data, status, xhr) {// success callback function
-                console.log(data);
-                $('body').append(JSON.stringify(data));
-            }
-        });
-});*/
-
-
-
-import htmlString = JQuery.htmlString;
-
 class App {
     constructor() {
         console.log('it works, too2');
@@ -25,7 +7,7 @@ class App {
 
     private loadUsers() {
         console.log('loading the users');
-        $.ajax('/api/users',   // request url
+        $.ajax('/api/users',
             {
                 success: this.createUserTable
             });
@@ -50,6 +32,24 @@ class App {
     };
 
     private initBtns() {
+        $('#deleteIDbtn').on('click', t => {
+                let id: string;
+                id = $('#deleteIn').val().toString();
+                $.ajax('/api/users/delete',
+                    {
+                        type: 'GET',
+                        data: {
+                            ID: $("#deleteIn").val().toString()
+                        },
+                        contentType: "application/json",
+                        success: data => {
+                            console.log('form submitted.' + data.ID);
+                            this.loadUsers();
+                        }
+                    });
+            }
+        );
+
         $('#neuBtn').on('click', t => {
             let vorname: string;
             let nachname: string;
@@ -58,7 +58,6 @@ class App {
             vorname = $('#vorname').val().toString();
             nachname = $('#nachname').val().toString();
             email = $('#email').val().toString();
-
             let newUser = {"vorname": vorname, "nachname": nachname,   "email": email,   "passwort": "supersicher2",  "rolle": "Admin2"};
 
             $.ajax('/api/users',
@@ -70,7 +69,7 @@ class App {
                         this.loadUsers();
                     }
                 });
-        })
+        });
     }}
 
         $(() => {
