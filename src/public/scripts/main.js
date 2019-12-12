@@ -2,6 +2,12 @@ var App = /** @class */ (function () {
     function App() {
         this.createUserTable = function (data, status, hhr) {
             $('#tab1').empty();
+            $('#tab1').append('<th>ID</th>');
+            $('#tab1').append('<th>Vorname</th>');
+            $('#tab1').append('<th>Nachname</th>');
+            $('#tab1').append('<th>Email-Adresse</th>');
+            $('#tab1').append('<th>Passwort</th>');
+            $('#tab1').append('<th>Rolle</th>');
             data.forEach(function (value) {
                 var newrow = $('<tr/>');
                 $('#tab1').append(newrow);
@@ -9,6 +15,7 @@ var App = /** @class */ (function () {
                 newrow.append(td1);
                 td1.text(value.vorname);
                 newrow.append('<td>' + value.id + '</td>');
+                newrow.append('<td>' + value.vorname + '</td>');
                 newrow.append('<td>' + value.nachname + '</td>');
                 newrow.append('<td>' + value.email + '</td>');
                 newrow.append('<td>' + value.passwort + '</td>');
@@ -54,6 +61,15 @@ var App = /** @class */ (function () {
             $.ajax('/api/users', {
                 type: 'POST',
                 data: JSON.stringify(newUser),
+                contentType: "application/json",
+                success: function (data) {
+                    _this.loadUsers();
+                }
+            });
+        });
+        $('#sortName').on('click', function (t) {
+            $.ajax('/api/users/sortname', {
+                type: 'GET',
                 contentType: "application/json",
                 success: function (data) {
                     _this.loadUsers();

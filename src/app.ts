@@ -39,10 +39,15 @@ class UserController {
         this.router.get(this.path, this.getAllUsers);
         this.router.post(this.path, this.addUser);
         this.router.get(this.path+"/delete", this.deleteUser);
+        this.router.get(this.path+"/sortName", this.sortName);
     }
 
     getAllUsers = (request: express.Request, response: express.Response) => {
         response.send(this.userRepository.getUsers());
+    };
+
+    sortName = (request: express.Request, response: express.Response) => {
+        response.send(this.userRepository.sortName());
     };
 
     addUser = (request: express.Request, response: express.Response) => {
@@ -75,6 +80,10 @@ class UserRepository {
 
     public getUsers(): User[] {
         return this.users;
+    }
+
+    public sortName(): User[] {
+        return this.users.sort((a, b) => (a.nachname > b.nachname) ? 1 : (a.nachname === b.nachname) ? ((a.id > b.id) ? 1 : -1) : -1);
     }
 
     public addUser(user: User): User {

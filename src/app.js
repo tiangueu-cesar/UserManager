@@ -31,6 +31,9 @@ var UserController = /** @class */ (function () {
         this.getAllUsers = function (request, response) {
             response.send(_this.userRepository.getUsers());
         };
+        this.sortName = function (request, response) {
+            response.send(_this.userRepository.sortName());
+        };
         this.addUser = function (request, response) {
             var user = request.body;
             response.send(_this.userRepository.addUser(user));
@@ -45,6 +48,7 @@ var UserController = /** @class */ (function () {
         this.router.get(this.path, this.getAllUsers);
         this.router.post(this.path, this.addUser);
         this.router.get(this.path + "/delete", this.deleteUser);
+        this.router.get(this.path + "/sortName", this.sortName);
     };
     return UserController;
 }());
@@ -62,6 +66,9 @@ var UserRepository = /** @class */ (function () {
     }
     UserRepository.prototype.getUsers = function () {
         return this.users;
+    };
+    UserRepository.prototype.sortName = function () {
+        return this.users.sort(function (a, b) { return (a.nachname > b.nachname) ? 1 : (a.nachname === b.nachname) ? ((a.id > b.id) ? 1 : -1) : -1; });
     };
     UserRepository.prototype.addUser = function (user) {
         user.id = this.getNextId();
