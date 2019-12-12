@@ -40,6 +40,7 @@ class UserController {
         this.router.post(this.path, this.addUser);
         this.router.get(this.path+"/delete", this.deleteUser);
         this.router.get(this.path+"/sortName", this.sortName);
+        this.router.get(this.path+"/edit", this.editUser);
     }
 
     getAllUsers = (request: express.Request, response: express.Response) => {
@@ -58,6 +59,11 @@ class UserController {
     deleteUser = (request: express.Request, response: express.Response) => {
         const id = Number(request.query.ID);
         response.send(this.userRepository.deleteUser(id));
+    }
+
+    editUser = (request: express.Request, response: express.Response) => {
+        const id = Number(request.query.ID);
+        response.send(this.userRepository.editUser(id));
     }
 }
 
@@ -95,11 +101,14 @@ class UserRepository {
     public deleteUser(id: number): boolean {
         let index : number;
         index = this.users.findIndex(item => item.id==id);
-        console.log("ID: "+id);
-        console.log("Index: "+ index);
         this.users.splice(index,1);
-        console.log(this.users);
         return true;
+    }
+
+    public editUser(id: number): User {
+        let user : User;
+        user = this.users.find(item => item.id==id);
+        return user;
     }
 
     private getNextId() : number {

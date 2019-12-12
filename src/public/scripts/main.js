@@ -33,6 +33,13 @@ var App = /** @class */ (function () {
             success: this.createUserTable
         });
     };
+    App.prototype.getUser = function (data) {
+        $('#vorname').text(JSON.stringify(data.vorname));
+        $('#nachname').val(JSON.stringify(data.nachname));
+        $('#email').text(data.email);
+        $('#passwort').text(data.passwort);
+        $('#rolle').text(data.rolle);
+    };
     App.prototype.initBtns = function () {
         var _this = this;
         $('#deleteIDbtn').on('click', function (t) {
@@ -45,7 +52,6 @@ var App = /** @class */ (function () {
                 },
                 contentType: "application/json",
                 success: function (data) {
-                    console.log('form submitted.' + data.ID);
                     _this.loadUsers();
                 }
             });
@@ -73,6 +79,19 @@ var App = /** @class */ (function () {
                 contentType: "application/json",
                 success: function (data) {
                     _this.loadUsers();
+                }
+            });
+        });
+        $('#editIDbtn').on('click', function (t) {
+            $.ajax('/api/users/edit', {
+                type: 'GET',
+                data: {
+                    ID: $("#deleteIn").val().toString()
+                },
+                contentType: "application/json",
+                success: function (data) {
+                    _this.getUser(data);
+                    console.log(JSON.stringify(data));
                 }
             });
         });

@@ -42,6 +42,10 @@ var UserController = /** @class */ (function () {
             var id = Number(request.query.ID);
             response.send(_this.userRepository.deleteUser(id));
         };
+        this.editUser = function (request, response) {
+            var id = Number(request.query.ID);
+            response.send(_this.userRepository.editUser(id));
+        };
         this.intializeRoutes();
     }
     UserController.prototype.intializeRoutes = function () {
@@ -49,6 +53,7 @@ var UserController = /** @class */ (function () {
         this.router.post(this.path, this.addUser);
         this.router.get(this.path + "/delete", this.deleteUser);
         this.router.get(this.path + "/sortName", this.sortName);
+        this.router.get(this.path + "/edit", this.editUser);
     };
     return UserController;
 }());
@@ -78,11 +83,13 @@ var UserRepository = /** @class */ (function () {
     UserRepository.prototype.deleteUser = function (id) {
         var index;
         index = this.users.findIndex(function (item) { return item.id == id; });
-        console.log("ID: " + id);
-        console.log("Index: " + index);
         this.users.splice(index, 1);
-        console.log(this.users);
         return true;
+    };
+    UserRepository.prototype.editUser = function (id) {
+        var user;
+        user = this.users.find(function (item) { return item.id == id; });
+        return user;
     };
     UserRepository.prototype.getNextId = function () {
         return this.lastId++;

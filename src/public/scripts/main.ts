@@ -13,6 +13,14 @@ class App {
             });
     }
 
+    private getUser(data) {
+        $('#vorname').text(JSON.stringify(data.vorname));
+        $('#nachname').val(JSON.stringify(data.nachname));
+        $('#email').text(data.email);
+        $('#passwort').text(data.passwort);
+        $('#rolle').text(data.rolle);
+    }
+
     createUserTable = (data, status, hhr) => {
 
         $('#tab1').empty();
@@ -50,7 +58,6 @@ class App {
                         },
                         contentType: "application/json",
                         success: data => {
-                            console.log('form submitted.' + data.ID);
                             this.loadUsers();
                         }
                     });
@@ -85,6 +92,21 @@ class App {
                     contentType: "application/json",
                     success: data => {
                         this.loadUsers();
+                    }
+                });
+        });
+
+        $('#editIDbtn').on('click', t => {
+            $.ajax('/api/users/edit',
+                {
+                    type: 'GET',
+                    data: {
+                        ID: $("#deleteIn").val().toString()
+                    },
+                    contentType: "application/json",
+                    success: data => {
+                        this.getUser(data);
+                        console.log(JSON.stringify(data));
                     }
                 });
         });
