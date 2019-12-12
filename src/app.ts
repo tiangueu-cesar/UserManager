@@ -41,6 +41,7 @@ class UserController {
         this.router.get(this.path+"/delete", this.deleteUser);
         this.router.get(this.path+"/sortName", this.sortName);
         this.router.get(this.path+"/edit", this.editUser);
+        this.router.post(this.path+"/edit", this.editUserById);
     }
 
     getAllUsers = (request: express.Request, response: express.Response) => {
@@ -54,6 +55,11 @@ class UserController {
     addUser = (request: express.Request, response: express.Response) => {
         const user: User = request.body;
         response.send(this.userRepository.addUser(user));
+    };
+
+    editUserById = (request: express.Request, response: express.Response) => {
+        const user: User = request.body;
+        response.send(this.userRepository.editUserById(user));
     };
 
     deleteUser = (request: express.Request, response: express.Response) => {
@@ -108,6 +114,16 @@ class UserRepository {
     public editUser(id: number): User {
         let user : User;
         user = this.users.find(item => item.id==id);
+        return user;
+    }
+
+    public editUserById(user: User): User {
+        let userToChange : User;
+        this.users.find(item => item.id==user.id).nachname = user.nachname;
+        this.users.find(item => item.id==user.id).vorname = user.vorname;
+        this.users.find(item => item.id==user.id).email = user.email;
+        this.users.find(item => item.id==user.id).passwort = user.passwort;
+        this.users.find(item => item.id==user.id).rolle = user.rolle;
         return user;
     }
 

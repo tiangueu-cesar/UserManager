@@ -14,11 +14,11 @@ class App {
     }
 
     private getUser(data) {
-        $('#vorname').text(JSON.stringify(data.vorname));
-        $('#nachname').val(JSON.stringify(data.nachname));
-        $('#email').text(data.email);
-        $('#passwort').text(data.passwort);
-        $('#rolle').text(data.rolle);
+        $('#vorname').val(JSON.stringify(data.vorname).replace(/"([^"]+(?="))"/g, '$1'));
+        $('#nachname').val(JSON.stringify(data.nachname).replace(/"([^"]+(?="))"/g, '$1'));
+        $('#email').val(JSON.stringify(data.email).replace(/"([^"]+(?="))"/g, '$1'));
+        $('#passwort').val(JSON.stringify(data.passwort).replace(/"([^"]+(?="))"/g, '$1'));
+        $('#rolle').val(JSON.stringify(data.rolle).replace(/"([^"]+(?="))"/g, '$1'));
     }
 
     createUserTable = (data, status, hhr) => {
@@ -68,11 +68,15 @@ class App {
             let vorname: string;
             let nachname: string;
             let email: string;
+            let passwort: string;
+            let rolle: string;
 
             vorname = $('#vorname').val().toString();
             nachname = $('#nachname').val().toString();
             email = $('#email').val().toString();
-            let newUser = {"vorname": vorname, "nachname": nachname,   "email": email,   "passwort": "supersicher2",  "rolle": "Admin2"};
+            passwort = $('#passwort').val().toString();
+            rolle = $('#rolle').val().toString();
+            let newUser = {"vorname": vorname, "nachname": nachname,   "email": email,   "passwort": passwort,  "rolle": rolle};
 
             $.ajax('/api/users',
                 {
@@ -107,6 +111,33 @@ class App {
                     success: data => {
                         this.getUser(data);
                         console.log(JSON.stringify(data));
+                    }
+                });
+        });
+
+
+        $('#okBtn').on('click', t => {
+            let vorname: string;
+            let nachname: string;
+            let email: string;
+            let passwort: string;
+            let rolle: string;
+
+            vorname = $('#vorname').val().toString();
+            nachname = $('#nachname').val().toString();
+            email = $('#email').val().toString();
+            passwort = $('#passwort').val().toString();
+            rolle = $('#rolle').val().toString();
+
+            let newUser = {"id": $("#deleteIn").val().toString(), "vorname": vorname, "nachname": nachname,   "email": email,   "passwort": passwort,  "rolle": rolle};
+
+            $.ajax('/api/users/edit',
+                {
+                    type: 'POST',
+                    data: JSON.stringify(newUser),
+                    contentType: "application/json",
+                    success: data => {
+                        this.loadUsers();
                     }
                 });
         });

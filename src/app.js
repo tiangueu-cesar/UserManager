@@ -38,6 +38,10 @@ var UserController = /** @class */ (function () {
             var user = request.body;
             response.send(_this.userRepository.addUser(user));
         };
+        this.editUserById = function (request, response) {
+            var user = request.body;
+            response.send(_this.userRepository.editUserById(user));
+        };
         this.deleteUser = function (request, response) {
             var id = Number(request.query.ID);
             response.send(_this.userRepository.deleteUser(id));
@@ -54,6 +58,7 @@ var UserController = /** @class */ (function () {
         this.router.get(this.path + "/delete", this.deleteUser);
         this.router.get(this.path + "/sortName", this.sortName);
         this.router.get(this.path + "/edit", this.editUser);
+        this.router.post(this.path + "/edit", this.editUserById);
     };
     return UserController;
 }());
@@ -89,6 +94,15 @@ var UserRepository = /** @class */ (function () {
     UserRepository.prototype.editUser = function (id) {
         var user;
         user = this.users.find(function (item) { return item.id == id; });
+        return user;
+    };
+    UserRepository.prototype.editUserById = function (user) {
+        var userToChange;
+        this.users.find(function (item) { return item.id == user.id; }).nachname = user.nachname;
+        this.users.find(function (item) { return item.id == user.id; }).vorname = user.vorname;
+        this.users.find(function (item) { return item.id == user.id; }).email = user.email;
+        this.users.find(function (item) { return item.id == user.id; }).passwort = user.passwort;
+        this.users.find(function (item) { return item.id == user.id; }).rolle = user.rolle;
         return user;
     };
     UserRepository.prototype.getNextId = function () {
