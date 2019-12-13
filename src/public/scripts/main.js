@@ -1,6 +1,6 @@
 var App = /** @class */ (function () {
     function App() {
-        this.createUserTable = function (data, status, hhr) {
+        this.createUserTable = function (data) {
             $('#tab1').empty();
             $('#tab1').append('<th>ID</th>');
             $('#tab1').append('<th>Vorname</th>');
@@ -28,7 +28,6 @@ var App = /** @class */ (function () {
     }
     ;
     App.prototype.loadUsers = function () {
-        console.log('loading the users');
         $.ajax('/api/users', {
             success: this.createUserTable
         });
@@ -123,9 +122,21 @@ var App = /** @class */ (function () {
                 contentType: "application/json",
                 success: function (data) {
                     _this.getUser(data);
-                    console.log(JSON.stringify(data));
                 }
             });
+        });
+        $('#vnamepartBtn').on('click', function (t) {
+            $.ajax('/api/users/vnameFilter', {
+                type: 'GET',
+                data: {
+                    wordpart: $("#wordpart").val().toString()
+                },
+                contentType: "application/json",
+                success: _this.createUserTable
+            });
+        });
+        $('#clearFilterBtn').on('click', function (t) {
+            _this.loadUsers();
         });
         $('#okBtn').on('click', function (t) {
             var vorname;

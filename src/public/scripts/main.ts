@@ -6,7 +6,6 @@ class App {
     };
 
     private loadUsers() {
-        console.log('loading the users');
         $.ajax('/api/users',
             {
                 success: this.createUserTable
@@ -22,7 +21,7 @@ class App {
         $('#rolle').val(JSON.stringify(data.rolle).replace(/(^"|"$)/g, ''));
     }
 
-    createUserTable = (data, status, hhr) => {
+    createUserTable = (data) => {
 
         $('#tab1').empty();
         $('#tab1').append('<th>ID</th>');
@@ -144,9 +143,24 @@ class App {
                     contentType: "application/json",
                     success: data => {
                         this.getUser(data);
-                        console.log(JSON.stringify(data));
-                    }
+                        }
                 });
+        });
+
+        $('#vnamepartBtn').on('click', t => {
+            $.ajax('/api/users/vnameFilter',
+                {
+                    type: 'GET',
+                    data: {
+                        wordpart: $("#wordpart").val().toString()
+                    },
+                    contentType: "application/json",
+                    success:  this.createUserTable
+                });
+        });
+
+        $('#clearFilterBtn').on('click', t => {
+           this.loadUsers();
         });
 
 

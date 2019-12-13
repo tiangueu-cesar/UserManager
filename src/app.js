@@ -55,6 +55,10 @@ var UserController = /** @class */ (function () {
             var id = Number(request.query.ID);
             response.send(_this.userRepository.deleteUser(id));
         };
+        this.vnameFilter = function (request, response) {
+            var wordpart = request.query.wordpart;
+            response.send(_this.userRepository.vnameFilter(wordpart));
+        };
         this.editUser = function (request, response) {
             var id = Number(request.query.ID);
             response.send(_this.userRepository.editUser(id));
@@ -70,6 +74,7 @@ var UserController = /** @class */ (function () {
         this.router.get(this.path + "/sortRolle", this.sortRolle);
         this.router.get(this.path + "/sortID", this.sortID);
         this.router.get(this.path + "/edit", this.editUser);
+        this.router.get(this.path + "/vnameFilter", this.vnameFilter);
         this.router.post(this.path + "/edit", this.editUserById);
     };
     return UserController;
@@ -117,6 +122,10 @@ var UserRepository = /** @class */ (function () {
         index = this.users.findIndex(function (item) { return item.id == id; });
         this.users.splice(index, 1);
         return true;
+    };
+    UserRepository.prototype.vnameFilter = function (wordpart) {
+        console.log(this.users.filter(function (item) { return item.vorname.includes(wordpart); }));
+        return this.users.filter(function (item) { return item.vorname.includes(wordpart); });
     };
     UserRepository.prototype.editUser = function (id) {
         var user;

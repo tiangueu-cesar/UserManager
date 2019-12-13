@@ -44,6 +44,7 @@ class UserController {
         this.router.get(this.path+"/sortRolle", this.sortRolle);
         this.router.get(this.path+"/sortID", this.sortID);
         this.router.get(this.path+"/edit", this.editUser);
+        this.router.get(this.path+"/vnameFilter", this.vnameFilter);
         this.router.post(this.path+"/edit", this.editUserById);
     }
 
@@ -80,7 +81,12 @@ class UserController {
     deleteUser = (request: express.Request, response: express.Response) => {
         const id = Number(request.query.ID);
         response.send(this.userRepository.deleteUser(id));
-    }
+    };
+
+    vnameFilter = (request: express.Request, response: express.Response) => {
+        const wordpart = request.query.wordpart;
+        response.send(this.userRepository.vnameFilter(wordpart));
+    };
 
     editUser = (request: express.Request, response: express.Response) => {
         const id = Number(request.query.ID);
@@ -142,6 +148,11 @@ class UserRepository {
         index = this.users.findIndex(item => item.id==id);
         this.users.splice(index,1);
         return true;
+    }
+
+    public vnameFilter(wordpart: string): User[] {
+        console.log(this.users.filter(item => item.vorname.includes(wordpart)));
+        return this.users.filter(item => item.vorname.includes(wordpart));
     }
 
     public editUser(id: number): User {
