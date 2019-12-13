@@ -15,11 +15,11 @@ class App {
 
     //https://stackoverflow.com/questions/19156148/i-want-to-remove-double-quotes-from-a-string/43220059
     private getUser(data) {
-        $('#vorname').val(JSON.stringify(data.vorname).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#nachname').val(JSON.stringify(data.nachname).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#email').val(JSON.stringify(data.email).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#passwort').val(JSON.stringify(data.passwort).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#rolle').val(JSON.stringify(data.rolle).replace(/"([^"]+(?="))"/g, '$1'));
+        $('#vorname').val(JSON.stringify(data.vorname).replace(/(^"|"$)/g, ''));
+        $('#nachname').val(JSON.stringify(data.nachname).replace(/(^"|"$)/g, ''));
+        $('#email').val(JSON.stringify(data.email).replace(/(^"|"$)/g, ''));
+        $('#passwort').val(JSON.stringify(data.passwort).replace(/(^"|"$)/g, ''));
+        $('#rolle').val(JSON.stringify(data.rolle).replace(/(^"|"$)/g, ''));
     }
 
     createUserTable = (data, status, hhr) => {
@@ -27,7 +27,7 @@ class App {
         $('#tab1').empty();
         $('#tab1').append('<th>ID</th>');
         $('#tab1').append('<th>Vorname</th>');
-        $('#tab1').append('<th>Nachname</th>');
+        $('#tab1').append('<th> Nachname</th>');
         $('#tab1').append('<th>Email-Adresse</th>');
         $('#tab1').append('<th>Passwort</th>');
         $('#tab1').append('<th>Rolle</th>');
@@ -90,6 +90,7 @@ class App {
                 });
         });
 
+
         $('#sortName').on('click', t => {
             $.ajax('/api/users/sortname',
                 {
@@ -101,6 +102,38 @@ class App {
                 });
         });
 
+        $('#sortVName').on('click', t => {
+            $.ajax('/api/users/sortvname',
+                {
+                    type: 'GET',
+                    contentType: "application/json",
+                    success: data => {
+                        this.loadUsers();
+                    }
+                });
+        });
+
+        $('#sortID').on('click', t => {
+            $.ajax('/api/users/sortID',
+                {
+                    type: 'GET',
+                    contentType: "application/json",
+                    success: data => {
+                        this.loadUsers();
+                    }
+                });
+        });
+
+        $('#sortRolle').on('click', t => {
+            $.ajax('/api/users/sortRolle',
+                {
+                    type: 'GET',
+                    contentType: "application/json",
+                    success: data => {
+                        this.loadUsers();
+                    }
+                });
+        });
         $('#editIDbtn').on('click', t => {
             $.ajax('/api/users/edit',
                 {

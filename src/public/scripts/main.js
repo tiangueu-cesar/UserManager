@@ -4,7 +4,7 @@ var App = /** @class */ (function () {
             $('#tab1').empty();
             $('#tab1').append('<th>ID</th>');
             $('#tab1').append('<th>Vorname</th>');
-            $('#tab1').append('<th>Nachname</th>');
+            $('#tab1').append('<th> Nachname</th>');
             $('#tab1').append('<th>Email-Adresse</th>');
             $('#tab1').append('<th>Passwort</th>');
             $('#tab1').append('<th>Rolle</th>');
@@ -35,11 +35,11 @@ var App = /** @class */ (function () {
     };
     //https://stackoverflow.com/questions/19156148/i-want-to-remove-double-quotes-from-a-string/43220059
     App.prototype.getUser = function (data) {
-        $('#vorname').val(JSON.stringify(data.vorname).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#nachname').val(JSON.stringify(data.nachname).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#email').val(JSON.stringify(data.email).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#passwort').val(JSON.stringify(data.passwort).replace(/"([^"]+(?="))"/g, '$1'));
-        $('#rolle').val(JSON.stringify(data.rolle).replace(/"([^"]+(?="))"/g, '$1'));
+        $('#vorname').val(JSON.stringify(data.vorname).replace(/(^"|"$)/g, ''));
+        $('#nachname').val(JSON.stringify(data.nachname).replace(/(^"|"$)/g, ''));
+        $('#email').val(JSON.stringify(data.email).replace(/(^"|"$)/g, ''));
+        $('#passwort').val(JSON.stringify(data.passwort).replace(/(^"|"$)/g, ''));
+        $('#rolle').val(JSON.stringify(data.rolle).replace(/(^"|"$)/g, ''));
     };
     App.prototype.initBtns = function () {
         var _this = this;
@@ -80,6 +80,33 @@ var App = /** @class */ (function () {
         });
         $('#sortName').on('click', function (t) {
             $.ajax('/api/users/sortname', {
+                type: 'GET',
+                contentType: "application/json",
+                success: function (data) {
+                    _this.loadUsers();
+                }
+            });
+        });
+        $('#sortVName').on('click', function (t) {
+            $.ajax('/api/users/sortvname', {
+                type: 'GET',
+                contentType: "application/json",
+                success: function (data) {
+                    _this.loadUsers();
+                }
+            });
+        });
+        $('#sortID').on('click', function (t) {
+            $.ajax('/api/users/sortID', {
+                type: 'GET',
+                contentType: "application/json",
+                success: function (data) {
+                    _this.loadUsers();
+                }
+            });
+        });
+        $('#sortRolle').on('click', function (t) {
+            $.ajax('/api/users/sortRolle', {
                 type: 'GET',
                 contentType: "application/json",
                 success: function (data) {

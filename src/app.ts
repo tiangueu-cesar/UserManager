@@ -39,7 +39,10 @@ class UserController {
         this.router.get(this.path, this.getAllUsers);
         this.router.post(this.path, this.addUser);
         this.router.get(this.path+"/delete", this.deleteUser);
+        this.router.get(this.path+"/sortVName", this.sortVName);
         this.router.get(this.path+"/sortName", this.sortName);
+        this.router.get(this.path+"/sortRolle", this.sortRolle);
+        this.router.get(this.path+"/sortID", this.sortID);
         this.router.get(this.path+"/edit", this.editUser);
         this.router.post(this.path+"/edit", this.editUserById);
     }
@@ -50,6 +53,18 @@ class UserController {
 
     sortName = (request: express.Request, response: express.Response) => {
         response.send(this.userRepository.sortName());
+    };
+
+    sortVName = (request: express.Request, response: express.Response) => {
+        response.send(this.userRepository.sortVName());
+    };
+
+    sortID = (request: express.Request, response: express.Response) => {
+        response.send(this.userRepository.sortID());
+    };
+
+    sortRolle = (request: express.Request, response: express.Response) => {
+        response.send(this.userRepository.sortRolle());
     };
 
     addUser = (request: express.Request, response: express.Response) => {
@@ -95,7 +110,25 @@ class UserRepository {
     }
 
     public sortName(): User[] {
-        return this.users.sort((a, b) => (a.nachname > b.nachname) ? 1 : (a.nachname === b.nachname) ? ((a.id > b.id) ? 1 : -1) : -1);
+        return this.users.sort((a, b) => (a.nachname > b.nachname) ?
+            1 : (a.nachname === b.nachname) ?
+                ((a.id > b.id) ? 1 : -1) : -1);
+    }
+
+    public sortVName(): User[] {
+        return this.users.sort((a, b) => (a.vorname > b.vorname) ?
+            1 : (a.vorname === b.vorname) ?
+                ((a.id > b.id) ? 1 : -1) : -1);
+    }
+
+    public sortRolle(): User[] {
+        return this.users.sort((a, b) => (a.rolle > b.rolle) ?
+            1 : (a.rolle === b.rolle) ?
+                ((a.id > b.id) ? 1 : -1) : -1);
+    }
+
+    public sortID(): User[] {
+        return this.users.sort((a, b) => (a.id > b.id) ? 1 : -1);
     }
 
     public addUser(user: User): User {

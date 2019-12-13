@@ -34,6 +34,15 @@ var UserController = /** @class */ (function () {
         this.sortName = function (request, response) {
             response.send(_this.userRepository.sortName());
         };
+        this.sortVName = function (request, response) {
+            response.send(_this.userRepository.sortVName());
+        };
+        this.sortID = function (request, response) {
+            response.send(_this.userRepository.sortID());
+        };
+        this.sortRolle = function (request, response) {
+            response.send(_this.userRepository.sortRolle());
+        };
         this.addUser = function (request, response) {
             var user = request.body;
             response.send(_this.userRepository.addUser(user));
@@ -56,7 +65,10 @@ var UserController = /** @class */ (function () {
         this.router.get(this.path, this.getAllUsers);
         this.router.post(this.path, this.addUser);
         this.router.get(this.path + "/delete", this.deleteUser);
+        this.router.get(this.path + "/sortVName", this.sortVName);
         this.router.get(this.path + "/sortName", this.sortName);
+        this.router.get(this.path + "/sortRolle", this.sortRolle);
+        this.router.get(this.path + "/sortID", this.sortID);
         this.router.get(this.path + "/edit", this.editUser);
         this.router.post(this.path + "/edit", this.editUserById);
     };
@@ -78,7 +90,22 @@ var UserRepository = /** @class */ (function () {
         return this.users;
     };
     UserRepository.prototype.sortName = function () {
-        return this.users.sort(function (a, b) { return (a.nachname > b.nachname) ? 1 : (a.nachname === b.nachname) ? ((a.id > b.id) ? 1 : -1) : -1; });
+        return this.users.sort(function (a, b) { return (a.nachname > b.nachname) ?
+            1 : (a.nachname === b.nachname) ?
+            ((a.id > b.id) ? 1 : -1) : -1; });
+    };
+    UserRepository.prototype.sortVName = function () {
+        return this.users.sort(function (a, b) { return (a.vorname > b.vorname) ?
+            1 : (a.vorname === b.vorname) ?
+            ((a.id > b.id) ? 1 : -1) : -1; });
+    };
+    UserRepository.prototype.sortRolle = function () {
+        return this.users.sort(function (a, b) { return (a.rolle > b.rolle) ?
+            1 : (a.rolle === b.rolle) ?
+            ((a.id > b.id) ? 1 : -1) : -1; });
+    };
+    UserRepository.prototype.sortID = function () {
+        return this.users.sort(function (a, b) { return (a.id > b.id) ? 1 : -1; });
     };
     UserRepository.prototype.addUser = function (user) {
         user.id = this.getNextId();
