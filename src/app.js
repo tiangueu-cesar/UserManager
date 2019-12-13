@@ -59,6 +59,14 @@ var UserController = /** @class */ (function () {
             var wordpart = request.query.wordpart;
             response.send(_this.userRepository.vnameFilter(wordpart));
         };
+        this.nameFilter = function (request, response) {
+            var wordpart = request.query.wordpart;
+            response.send(_this.userRepository.nameFilter(wordpart));
+        };
+        this.rolleFilter = function (request, response) {
+            var wordpart = request.query.wordpart;
+            response.send(_this.userRepository.rolleFilter(wordpart));
+        };
         this.editUser = function (request, response) {
             var id = Number(request.query.ID);
             response.send(_this.userRepository.editUser(id));
@@ -75,6 +83,8 @@ var UserController = /** @class */ (function () {
         this.router.get(this.path + "/sortID", this.sortID);
         this.router.get(this.path + "/edit", this.editUser);
         this.router.get(this.path + "/vnameFilter", this.vnameFilter);
+        this.router.get(this.path + "/nameFilter", this.nameFilter);
+        this.router.get(this.path + "/rolleFilter", this.rolleFilter);
         this.router.post(this.path + "/edit", this.editUserById);
     };
     return UserController;
@@ -124,8 +134,13 @@ var UserRepository = /** @class */ (function () {
         return true;
     };
     UserRepository.prototype.vnameFilter = function (wordpart) {
-        console.log(this.users.filter(function (item) { return item.vorname.includes(wordpart); }));
         return this.users.filter(function (item) { return item.vorname.includes(wordpart); });
+    };
+    UserRepository.prototype.nameFilter = function (wordpart) {
+        return this.users.filter(function (item) { return item.nachname.includes(wordpart); });
+    };
+    UserRepository.prototype.rolleFilter = function (wordpart) {
+        return this.users.filter(function (item) { return item.rolle.includes(wordpart); });
     };
     UserRepository.prototype.editUser = function (id) {
         var user;

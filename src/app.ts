@@ -45,6 +45,8 @@ class UserController {
         this.router.get(this.path+"/sortID", this.sortID);
         this.router.get(this.path+"/edit", this.editUser);
         this.router.get(this.path+"/vnameFilter", this.vnameFilter);
+        this.router.get(this.path+"/nameFilter", this.nameFilter);
+        this.router.get(this.path+"/rolleFilter", this.rolleFilter);
         this.router.post(this.path+"/edit", this.editUserById);
     }
 
@@ -86,6 +88,16 @@ class UserController {
     vnameFilter = (request: express.Request, response: express.Response) => {
         const wordpart = request.query.wordpart;
         response.send(this.userRepository.vnameFilter(wordpart));
+    };
+
+    nameFilter = (request: express.Request, response: express.Response) => {
+        const wordpart = request.query.wordpart;
+        response.send(this.userRepository.nameFilter(wordpart));
+    };
+
+    rolleFilter = (request: express.Request, response: express.Response) => {
+        const wordpart = request.query.wordpart;
+        response.send(this.userRepository.rolleFilter(wordpart));
     };
 
     editUser = (request: express.Request, response: express.Response) => {
@@ -151,8 +163,15 @@ class UserRepository {
     }
 
     public vnameFilter(wordpart: string): User[] {
-        console.log(this.users.filter(item => item.vorname.includes(wordpart)));
         return this.users.filter(item => item.vorname.includes(wordpart));
+    }
+
+    public nameFilter(wordpart: string): User[] {
+          return this.users.filter(item => item.nachname.includes(wordpart));
+    }
+
+    public rolleFilter(wordpart: string): User[] {
+        return this.users.filter(item => item.rolle.includes(wordpart));
     }
 
     public editUser(id: number): User {

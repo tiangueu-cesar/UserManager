@@ -135,6 +135,26 @@ var App = /** @class */ (function () {
                 success: _this.createUserTable
             });
         });
+        $('#namepartBtn').on('click', function (t) {
+            $.ajax('/api/users/nameFilter', {
+                type: 'GET',
+                data: {
+                    wordpart: $("#wordpart").val().toString()
+                },
+                contentType: "application/json",
+                success: _this.createUserTable
+            });
+        });
+        $('#rollePartBtn').on('click', function (t) {
+            $.ajax('/api/users/rolleFilter', {
+                type: 'GET',
+                data: {
+                    wordpart: $("#wordpart").val().toString()
+                },
+                contentType: "application/json",
+                success: _this.createUserTable
+            });
+        });
         $('#clearFilterBtn').on('click', function (t) {
             _this.loadUsers();
         });

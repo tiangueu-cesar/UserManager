@@ -159,6 +159,30 @@ class App {
                 });
         });
 
+        $('#namepartBtn').on('click', t => {
+            $.ajax('/api/users/nameFilter',
+                {
+                    type: 'GET',
+                    data: {
+                        wordpart: $("#wordpart").val().toString()
+                    },
+                    contentType: "application/json",
+                    success:  this.createUserTable
+                });
+        });
+
+        $('#rollePartBtn').on('click', t => {
+            $.ajax('/api/users/rolleFilter',
+                {
+                    type: 'GET',
+                    data: {
+                        wordpart: $("#wordpart").val().toString()
+                    },
+                    contentType: "application/json",
+                    success:  this.createUserTable
+                });
+        });
+
         $('#clearFilterBtn').on('click', t => {
            this.loadUsers();
         });
