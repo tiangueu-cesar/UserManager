@@ -1,50 +1,135 @@
 <html>
 
 <head>
-  <title>Express</title>
+  <title>User Manager</title>
   <link rel="stylesheet" href="/assets/stylesheets/style.css">
-  <!--
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  -->
   <link rel="stylesheet" href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/libs/fontawesome-free-5.11.2-web/css/all.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="/assets/libs/bootstrap.min.css">
   <script src="/assets/libs/jquery.min.js"></script>
   <script src="/assets/scripts/main.js"></script>
 </head>
 
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
-
+<div class="form-group">
   <form>
+    <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+  <input type="text" id="deleteIn" class="form-control"><label for="deleteIn">Zu l&ouml;schende ID</label>
+      </div>
+    </div>
+        <div class="col-sm-1">
+          <div class="form-group">
+  <button type="button" id="deleteIDbtn" class="btn btn-primary btn-sm">L&ouml;schen</button>
+          </div>
+        </div>
+            <div class="col-sm-1">
+              <div class="form-group">
+  <button type="button" id="editIDbtn" class="btn btn-primary btn-sm">&Auml;ndern</button>
+              </div>
+            </div>
+                <div class="col-sm-1">
+                  <div class="form-group">
+  <button type="button" id="okBtn" class="btn btn-primary btn-sm">OK</button>
+                  </div>
+                </div>
+    </div>
 
-  <input type="text" id="deleteIn"><label for="deleteIn">Zu l&ouml;schende ID</label>
-  <button type="button" id="deleteIDbtn">L&ouml;schen</button>
-  <button type="button" id="editIDbtn">&Auml;ndern</button>
-  <button type="button" id="okBtn">OK</button>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+  <input type="text" id="vorname" class="form-control"><label for="vorname" class="control-label">Vorname</label>
+        </div>
+      </div>
 
-  <input type="text" id="vorname"><label for="vorname">Vorname</label>
-  <input type="text" id="nachname"><label for="nachname">Nachname</label>
-  <input type="text" id="email"><label for="email">E-Mail</label>
-  <input type="text" id="passwort"><label for="passwort">Passwort</label>
-  <input type="text" id="rolle"><label for="rolle">Rolle</label>
-    <button type="button" id="neuBtn">Neu</button>
-    <button type="button" id="sortID">Sortiere nach ID</button>
-    <button type="button" id="sortVName">Sortiere nach Vorname</button>
-    <button type="button" id="sortName">Sortiere nach Nachname</button>
-    <button type="button" id="sortRolle">Sortiere nach Rolle</button>
+      <div class="col-md-2">
+        <div class="form-group">
+          <input type="text" id="nachname" class="form-control"><label for="nachname" class="control-label">Nachname</label>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <input type="text" id="email" class="form-control"><label for="email" class="control-label">E-Mail</label>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+  <input type="text" id="passwort" class="form-control"><label for="passwort" class="control-label">Passwort</label>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <input type="text" id="rolle" class="form-control"><label for="rolle" class="control-label">Rolle</label>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="neuBtn" class="btn btn-primary btn-md">Neu</button>
+        </div>
+      </div>
+    </div>
+
   </form>
-  <form>
-    <input type="text" id="wordpart"><label for="wordpart">Suche nach Bestandteil</label>
-    <button type="button" id="vnamepartBtn">Suche nach Vorname mit</button>
-    <button type="button" id="namepartBtn">Suche nach Nachname mit</button>
-    <button type="button" id="rollePartBtn">Suche nach Rolle mit</button>
-    <button type="button" id="clearFilterBtn">Filter aufheben</button>
-  </form>
-        <table id="tab1">
+
+</div>
+        <table id="tab1" class="table">
 
         </table>
+<form>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+  <button type="button" id="sortID" class="btn btn-primary btn-sm">Sortiere nach ID</button>
+      </div>
+    </div>
+        <div class="col-md-2">
+          <div class="form-group">
+        <button type="button" id="sortVName" class="btn btn-primary btn-sm">Sortiere nach Vorname</button>
+          </div>
+        </div>
+            <div class="col-md-2">
+              <div class="form-group">
+            <button type="button" id="sortName" class="btn btn-primary btn-sm">Sortiere nach Nachname</button>
+              </div>
+            </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+  <button type="button" id="sortRolle" class="btn btn-primary btn-sm">Sortiere nach Rolle</button>
+                  </div>
+                </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+    <div class="form-group">
+  <input type="text" id="wordpart"  class="form-control"><label for="wordpart">Suche nach Bestandteil</label>
+    </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+  <button type="button" id="vnamepartBtn" class="btn btn-primary btn-sm">Suche nach Vorname mit</button>
+      </div>
+    </div>
+        <div class="col-md-2">
+          <div class="form-group">
+        <button type="button" id="namepartBtn" class="btn btn-primary btn-sm">Suche nach Nachname mit</button>
+          </div>
+        </div>
+    <div class="col-md-2">
+      <div class="form-group">
+  <button type="button" id="rollePartBtn" class="btn btn-primary btn-sm">Suche nach Rolle mit</button>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+  <button type="button" id="clearFilterBtn" class="btn btn-primary btn-sm">Filter aufheben</button>
+      </div>
+    </div>
+  </div>
+</form>
   </body>
 
 </html>
