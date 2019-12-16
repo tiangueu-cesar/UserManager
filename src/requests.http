@@ -11,6 +11,18 @@ Content-Type: application/json
 GET http://localhost:5000/api/users/testUsers
 
 ###
+POST http://localhost:5000/api/users/testUsers
+Content-Type: application/json
+
+[
+{"vorname": "Schild",  "nachname": "Kröte",   "email": "zoo@mail.de2",   "passwort": "supersicher2",  "rolle": "User"},
+{"vorname": "Katze",  "nachname": "Miau",   "email": "test@mail.de2",   "passwort": "supersicher2",  "rolle": "Admin"},
+{"vorname": "Franz",  "nachname": "Kafka",   "email": "vaterkonfikt@mail.de",   "passwort": "Käfer",  "rolle": "User"},
+{"vorname": "Theodor Wiesengrund",  "nachname": "Adorno",   "email": "frankfurterschule@mail.de",   "passwort": "Dialektik",  "rolle": "Superuser"},
+{"vorname": "Alan",  "nachname": "Turing",   "email": "automat@mail.de",   "passwort": "enigma",  "rolle": "Supersicher"}
+]
+
+###
 GET http://localhost:5000/api/users/edit?ID=2
 
 ###

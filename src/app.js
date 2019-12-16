@@ -50,6 +50,10 @@ var UserController = /** @class */ (function () {
         this.addTestUsers = function (request, response) {
             response.send(_this.userRepository.addTestUsers());
         };
+        this.addTestUsersPerPost = function (request, response) {
+            var users = request.body;
+            response.send(_this.userRepository.addTestUsersPerPost(users));
+        };
         this.editUserById = function (request, response) {
             var user = request.body;
             response.send(_this.userRepository.editUserById(user));
@@ -90,6 +94,7 @@ var UserController = /** @class */ (function () {
         this.router.get(this.path + "/rolleFilter", this.rolleFilter);
         this.router.post(this.path + "/edit", this.editUserById);
         this.router.get(this.path + "/testUsers", this.addTestUsers);
+        this.router.post(this.path + "/testUsers", this.addTestUsersPerPost);
     };
     return UserController;
 }());
@@ -144,6 +149,14 @@ var UserRepository = /** @class */ (function () {
     };
     UserRepository.prototype.rolleFilter = function (wordpart) {
         return this.users.filter(function (item) { return item.rolle.includes(wordpart); });
+    };
+    UserRepository.prototype.addTestUsersPerPost = function (users) {
+        var _this = this;
+        users.forEach(function (value) {
+            value.id = _this.getNextId();
+            _this.users.push(value);
+        });
+        return this.users;
     };
     UserRepository.prototype.addTestUsers = function () {
         this.users.push({

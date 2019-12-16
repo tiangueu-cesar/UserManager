@@ -49,6 +49,7 @@ class UserController {
         this.router.get(this.path+"/rolleFilter", this.rolleFilter);
         this.router.post(this.path+"/edit", this.editUserById);
         this.router.get(this.path+"/testUsers", this.addTestUsers);
+        this.router.post(this.path+"/testUsers", this.addTestUsersPerPost);
     }
 
     getAllUsers = (request: express.Request, response: express.Response) => {
@@ -78,6 +79,11 @@ class UserController {
 
     addTestUsers = (request: express.Request, response: express.Response) => {
         response.send(this.userRepository.addTestUsers());
+    };
+
+    addTestUsersPerPost = (request: express.Request, response: express.Response) => {
+        const users: User[] = request.body;
+        response.send(this.userRepository.addTestUsersPerPost(users));
     };
 
     editUserById = (request: express.Request, response: express.Response) => {
@@ -179,6 +185,13 @@ class UserRepository {
         return this.users.filter(item => item.rolle.includes(wordpart));
     }
 
+    public addTestUsersPerPost(users: User[]): User[] {
+    users.forEach(value => {
+        value.id=this.getNextId();
+        this.users.push(value);
+    })
+        return this.users;
+    }
     public addTestUsers(): User[] {
 
         this.users.push({
