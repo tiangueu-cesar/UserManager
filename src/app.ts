@@ -244,6 +244,15 @@ class UserRepository {
             rolle: 'User',
         });
 
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'test',
+            nachname: 'einnachname',
+            email: 'test@mail.de',
+            passwort: 'supersicher',
+            rolle: 'Admin',
+        });
+
         return this.users;
     }
 
@@ -267,20 +276,6 @@ class UserRepository {
         return this.lastId ++;
     }
 
-    constructor() {
-        this.initMockData();
-    }
-
-    public initMockData() {
-        this.users.push({
-            id: this.getNextId(),
-            vorname:'test',
-            nachname: 'einnachname',
-            email: 'test@mail.de',
-            passwort: 'supersicher',
-            rolle: 'Admin',
-        });
-    }
 }
 /*
 addUser

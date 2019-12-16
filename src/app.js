@@ -103,7 +103,6 @@ var UserRepository = /** @class */ (function () {
     function UserRepository() {
         this.users = [];
         this.lastId = 0;
-        this.initMockData();
     }
     UserRepository.prototype.getUsers = function () {
         return this.users;
@@ -203,6 +202,14 @@ var UserRepository = /** @class */ (function () {
             passwort: 'passwort',
             rolle: 'User',
         });
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'test',
+            nachname: 'einnachname',
+            email: 'test@mail.de',
+            passwort: 'supersicher',
+            rolle: 'Admin',
+        });
         return this.users;
     };
     UserRepository.prototype.editUser = function (id) {
@@ -221,16 +228,6 @@ var UserRepository = /** @class */ (function () {
     };
     UserRepository.prototype.getNextId = function () {
         return this.lastId++;
-    };
-    UserRepository.prototype.initMockData = function () {
-        this.users.push({
-            id: this.getNextId(),
-            vorname: 'test',
-            nachname: 'einnachname',
-            email: 'test@mail.de',
-            passwort: 'supersicher',
-            rolle: 'Admin',
-        });
     };
     return UserRepository;
 }());

@@ -11,6 +11,14 @@ Content-Type: application/json
 GET http://localhost:5000/api/users/testUsers
 
 ###
+GET http://localhost:5000/api/users/edit?ID=2
+
+###
+POST http://localhost:5000/api/users/edit
+Content-Type: application/json
+
+{"id":"2","vorname": "Hello",  "nachname": "Pencer",   "email": "spencer@mail.de",   "passwort": "supersicher2",  "rolle": "User"}
+###
 GET http://localhost:5000/api/users/delete?ID=1
 
 ###
