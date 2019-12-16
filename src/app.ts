@@ -48,6 +48,7 @@ class UserController {
         this.router.get(this.path+"/nameFilter", this.nameFilter);
         this.router.get(this.path+"/rolleFilter", this.rolleFilter);
         this.router.post(this.path+"/edit", this.editUserById);
+        this.router.get(this.path+"/testUsers", this.addTestUsers);
     }
 
     getAllUsers = (request: express.Request, response: express.Response) => {
@@ -73,6 +74,10 @@ class UserController {
     addUser = (request: express.Request, response: express.Response) => {
         const user: User = request.body;
         response.send(this.userRepository.addUser(user));
+    };
+
+    addTestUsers = (request: express.Request, response: express.Response) => {
+        response.send(this.userRepository.addTestUsers());
     };
 
     editUserById = (request: express.Request, response: express.Response) => {
@@ -172,6 +177,74 @@ class UserRepository {
 
     public rolleFilter(wordpart: string): User[] {
         return this.users.filter(item => item.rolle.includes(wordpart));
+    }
+
+    public addTestUsers(): User[] {
+
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'David',
+            nachname: 'Hasselhoff',
+            email: 'freedom@mail.de',
+            passwort: 'bier',
+            rolle: 'Superuser',
+        });
+
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'Hello',
+            nachname: 'Spencer',
+            email: 'test@mail.de',
+            passwort: 'supersicher',
+            rolle: 'Admin',
+        });
+
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'Donald',
+            nachname: 'Duck',
+            email: 'entenhausen@mail.de',
+            passwort: 'daisy',
+            rolle: 'User',
+        });
+
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'Milan',
+            nachname: 'Sens',
+            email: 'Linux@mail.de',
+            passwort: 'zugegeben',
+            rolle: 'Superuser',
+        });
+
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'Christian',
+            nachname: 'Peter',
+            email: 'hallo@mail.de',
+            passwort: 'quatsch',
+            rolle: 'Admin',
+        });
+
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'Garfield',
+            nachname: 'Katze',
+            email: 'john@mail.de',
+            passwort: 'lasagne',
+            rolle: 'Admin',
+        });
+
+        this.users.push({
+            id: this.getNextId(),
+            vorname:'John',
+            nachname: 'Doe',
+            email: 'test@mail.de',
+            passwort: 'passwort',
+            rolle: 'User',
+        });
+
+        return this.users;
     }
 
     public editUser(id: number): User {

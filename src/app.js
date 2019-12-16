@@ -47,6 +47,9 @@ var UserController = /** @class */ (function () {
             var user = request.body;
             response.send(_this.userRepository.addUser(user));
         };
+        this.addTestUsers = function (request, response) {
+            response.send(_this.userRepository.addTestUsers());
+        };
         this.editUserById = function (request, response) {
             var user = request.body;
             response.send(_this.userRepository.editUserById(user));
@@ -86,6 +89,7 @@ var UserController = /** @class */ (function () {
         this.router.get(this.path + "/nameFilter", this.nameFilter);
         this.router.get(this.path + "/rolleFilter", this.rolleFilter);
         this.router.post(this.path + "/edit", this.editUserById);
+        this.router.get(this.path + "/testUsers", this.addTestUsers);
     };
     return UserController;
 }());
@@ -141,6 +145,65 @@ var UserRepository = /** @class */ (function () {
     };
     UserRepository.prototype.rolleFilter = function (wordpart) {
         return this.users.filter(function (item) { return item.rolle.includes(wordpart); });
+    };
+    UserRepository.prototype.addTestUsers = function () {
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'David',
+            nachname: 'Hasselhoff',
+            email: 'freedom@mail.de',
+            passwort: 'bier',
+            rolle: 'Superuser',
+        });
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'Hello',
+            nachname: 'Spencer',
+            email: 'test@mail.de',
+            passwort: 'supersicher',
+            rolle: 'Admin',
+        });
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'Donald',
+            nachname: 'Duck',
+            email: 'entenhausen@mail.de',
+            passwort: 'daisy',
+            rolle: 'User',
+        });
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'Milan',
+            nachname: 'Sens',
+            email: 'Linux@mail.de',
+            passwort: 'zugegeben',
+            rolle: 'Superuser',
+        });
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'Christian',
+            nachname: 'Peter',
+            email: 'hallo@mail.de',
+            passwort: 'quatsch',
+            rolle: 'Admin',
+        });
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'Garfield',
+            nachname: 'Katze',
+            email: 'john@mail.de',
+            passwort: 'lasagne',
+            rolle: 'Admin',
+        });
+        this.users.push({
+            id: this.getNextId(),
+            vorname: 'John',
+            nachname: 'Doe',
+            email: 'test@mail.de',
+            passwort: 'passwort',
+            rolle: 'User',
+        });
+        return this.users;
     };
     UserRepository.prototype.editUser = function (id) {
         var user;
