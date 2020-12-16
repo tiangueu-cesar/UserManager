@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+  <title><h3>Willkommen bei der Usermanager von Tinagueu Cesar</h3></title>
+
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/User.css">
+
+	<script language="javascript" type="text/javascript" src="/jquery/jquery.min.js"></script>
+	<script   src="/src/User.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+    <a class="navbar-brand" href="#">Usermanager</a>
+</nav>
+
+  <div id="form">
+          <div> ID: </div> <input id="userIDInput"   title=''       type='number' name='id'       value='' /> <br/>
+          <div> Vorname: </div> <input id="forenameInput" title=''  type='text'   name='vorname'  value='' /><br/>
+          <div> Nachname: </div> <input id="surnameInput"  title='' type='text'   name='nachname' value='' /> <br/>
+          <div> Rolle: </div> <input id="usernameinput"  title=''   type='text'   name='nachname' value='' /><br/>
+          <div> Emailadresse: </div> <input id="emailadresseinput"  title='' type="email"  name='nachname' value='' required="required" /><br/>
+          <div> passwort: </div> <input id="passwortinput"  title='' type="Password"   name='nachname' value='' /><br/>
+
+        <br />
+        <div></div>
+        <button id='createBtn'     type='submit' class="btn btn-primary"> create </button>
+        <button id='readBtn'       type='submit' class="btn"> read   </button>
+        <button id='updateBtn'     type='submit' class="btn"> update </button>
+        <button id='deleteBtn'     type='submit' class="bt btn-danger"> delete </button>
+        <br />
+          <hr/>
+        <br />
+
+        <div>
+            <input id="searchInput" type="text" class="form-control" placeholder="Search">
+        </div>
+        <button id='readListBtn'   type='submit' class="btn"> Liste sortieren   </button>
+        <button id='deleteListBtn' type='submit' class="btn btn-outline-danger"> delete List </button>
+  </div>
+
+
+</br>
+<hr/>
+<span> Sortieren nach : </span> <select id="sortselect">
+    <option value="vorname">vorname</option>
+    <option value="nachname">nachname</option>
+    <option value="rolle">rolle</option>
+    <option value="id">id</option>
+</select>
+
+  <div id="data"></div>
+
+
+
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as path from "path";
-import {url} from "inspector";
 
 class App {
     public app: express.Application;
@@ -14,7 +13,7 @@ class App {
         this.controller = new UserController(this.repo);
         this.app = express();
         this.port = 5000;
-        this.app.get("/", (req, res)=>{res.sendFile(path.join(__dirname, 'public')+"/index.html")});
+        this.app.get("/", (req, res)=>{res.sendFile(path.join(__dirname, 'public')+"/crud.html")});
         this.app.use(bodyParser.json());
         this.app.use("/assets", express.static(path.join(__dirname, "public")));
         this.app.use('/api', this.controller.router);
@@ -23,6 +22,8 @@ class App {
     public listen() {
         this.app.listen(this.port, () => {
             console.log(`App listening on port ${this.port}`);
+            console.log("http://localhost:" + this.port);
+
         });
     }
 }
@@ -196,43 +197,43 @@ class UserRepository {
 
         this.users.push({
             id: this.getNextId(),
-            vorname:'David',
+            vorname:'Nana',
             nachname: 'Hasselhoff',
-            email: 'freedom@mail.de',
-            passwort: 'bier',
+            email: '1558d@mail.de',
+            passwort: 'Notbier',
             rolle: 'Superuser',
         });
 
         this.users.push({
             id: this.getNextId(),
             vorname:'Hello',
-            nachname: 'Spencer',
-            email: 'test@mail.de',
+            nachname: 'Super',
+            email: 'probe@mail.de',
             passwort: 'supersicher',
             rolle: 'Admin',
         });
 
         this.users.push({
             id: this.getNextId(),
-            vorname:'Donald',
+            vorname:'Dick',
             nachname: 'Duck',
-            email: 'entenhausen@mail.de',
+            email: '45hausen@mail.de',
             passwort: 'daisy',
             rolle: 'User',
         });
 
         this.users.push({
             id: this.getNextId(),
-            vorname:'Milan',
-            nachname: 'Sens',
-            email: 'Linux@mail.de',
-            passwort: 'zugegeben',
+            vorname:'Yaser',
+            nachname: 'rahhal',
+            email: 'L86@yahoo.fr',
+            passwort: 'yes12',
             rolle: 'Superuser',
         });
 
         this.users.push({
             id: this.getNextId(),
-            vorname:'Christian',
+            vorname:'Ahmoud',
             nachname: 'Peter',
             email: 'hallo@mail.de',
             passwort: 'quatsch',
@@ -241,16 +242,16 @@ class UserRepository {
 
         this.users.push({
             id: this.getNextId(),
-            vorname:'Garfield',
-            nachname: 'Katze',
-            email: 'john@mail.de',
+            vorname:'Jaafar',
+            nachname: 'Merkel',
+            email: 'Mer45@mail.de',
             passwort: 'lasagne',
             rolle: 'Admin',
         });
 
         this.users.push({
             id: this.getNextId(),
-            vorname:'John',
+            vorname:'Phillip',
             nachname: 'Doe',
             email: 'test@mail.de',
             passwort: 'passwort',
@@ -259,7 +260,7 @@ class UserRepository {
 
         this.users.push({
             id: this.getNextId(),
-            vorname:'test',
+            vorname:'Vincent',
             nachname: 'einnachname',
             email: 'test@mail.de',
             passwort: 'supersicher',

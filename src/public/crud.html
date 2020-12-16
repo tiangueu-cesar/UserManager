@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <title>User Manager</title>
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <link rel="stylesheet" href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/libs/fontawesome-free-5.11.2-web/css/all.css">
+  <link rel="stylesheet" href="/assets/libs/bootstrap.min.css">
+    <link rel="icon" href="/assets/libs/favicon.ico" type="image/x-icon" />
+  <script src="/assets/libs/jquery.min.js"></script>
+  <script src="/assets/scripts/main.js"></script>
+</head>
+
+<body>
+
+<h1> Willkommen bei der Usermanager von Tiangueu Cesar </h1><br>
+<div class="form-group">
+  <form>
+        <br class="row">
+            <div class="col-sm-4">
+                  <div class="form-group">
+                  <input type="text" id="deleteIn" class="form-control"><label for="deleteIn">Suche ID</label>
+            </div>
+        </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                      <button type="button" id="deleteIDbtn" class="btn btn-danger"><i class="fas fa-user-minus"></i> L&ouml;schen</button>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <button type="button" id="editIDbtn" class="btn btn-primary btn-dark"><i class="fas fa-pencil-alt"></i> &Auml;ndern</button>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <button type="button" id="okBtn" class="btn btn-primary btn-dark"><i class="far fa-check-circle"></i> OK</button>
+                </div>
+            </div>
+       <div class="row">
+      <div class="col-md-2">
+          <div class="form-group">
+               <input type="text" id="vorname" class="form-control"><label for="vorname" class="control-label">Vorname</label>
+          </div>
+      </div>
+
+      <div class="col-md-2">
+          <div class="form-group">
+            <input type="text" id="nachname" class="form-control"><label for="nachname" class="control-label">Nachname</label>
+          </div>
+      </div>
+
+      <div class="col-md-2">
+          <div class="form-group">
+            <!--<input type="email" class="form-control" required placeholder="Email">-->
+            <input type="email" id="email" class="form-control"><label for="email" class="control-label" required >E-Mail</label>
+          </div>
+      </div>
+
+      <div class="col-md-2">
+          <div class="form-group">
+            <input type="password" id="passwort" class="form-control"><label for="passwort" class="control-label">Passwort</label>
+          </div>
+      </div>
+      <div class="col-md-2">
+          <div class="form-group">
+             <input type="text" id="rolle" class="form-control"><label for="rolle" class="control-label">Rolle</label>
+          </div>
+
+      </div>
+      <div class="col-md-2">
+          <div class="form-group">
+              <button type="button" id="neuBtn" class="btn btn-primary btn-dark"><i class="fas fa-user-plus"></i> Neu</button>
+          </div>
+      </div>
+    </div>
+    <hr>
+    <p><span>Ablauf der Suche nach Informationen eines Users</span></p>
+    <p><h3>Wonach würden Sie einen User suchen, wählen Sie einfach aus...</h3></p><br>
+    <div class="row">
+      <div class="col-md-2">
+          <div class="form-group">
+               <button type="button" id="sortID" class="btn btn-primary btn-dark"><i class="far fa-arrow-alt-circle-down"></i> ID </button>
+          </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="sortVName" class="btn btn-primary btn-dark"><i class="far fa-arrow-alt-circle-down"></i> Vorname</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="sortName" class="btn btn-primary btn-dark"><i class="far fa-arrow-alt-circle-down"></i> Nachname</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="sortRolle" class="btn btn-primary btn-dark"><i class="far fa-arrow-alt-circle-down"></i> Rolle</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <input type="text" id="wordpart"><label for="wordpart"><i class="fas fa-search"></i> Bestandteil</label>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="vnamepartBtn" class="btn btn-primary btn-dark"><i class="fas fa-search"></i> Vorname mit</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="namepartBtn" class="btn btn-primary btn-dark"><i class="fas fa-search"></i> Suche nach Nachname mit</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="rollePartBtn" class="btn btn-primary btn-dark"><i class="fas fa-search"></i> Suche nach Rolle mit</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" id="clearFilterBtn" class="btn btn-primary btn-dark"><i class="fas fa-times"></i> Filter aufheben</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+        <table id="tab1" class="table">
+
+        </table>
+
+  </body>
+
+</html>

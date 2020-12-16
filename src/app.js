@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
@@ -9,7 +9,7 @@ var App = /** @class */ (function () {
         this.controller = new UserController(this.repo);
         this.app = express();
         this.port = 5000;
-        this.app.get("/", function (req, res) { res.sendFile(path.join(__dirname, 'public') + "/index.html"); });
+        this.app.get("/", function (req, res) { res.sendFile(path.join(__dirname, 'public') + "/crud.html"); });
         this.app.use(bodyParser.json());
         this.app.use("/assets", express.static(path.join(__dirname, "public")));
         this.app.use('/api', this.controller.router);
@@ -18,6 +18,7 @@ var App = /** @class */ (function () {
         var _this = this;
         this.app.listen(this.port, function () {
             console.log("App listening on port " + _this.port);
+            console.log("http://localhost:" + _this.port);
         });
     };
     return App;
@@ -161,67 +162,67 @@ var UserRepository = /** @class */ (function () {
     UserRepository.prototype.addTestUsers = function () {
         this.users.push({
             id: this.getNextId(),
-            vorname: 'David',
+            vorname: 'Nana',
             nachname: 'Hasselhoff',
-            email: 'freedom@mail.de',
-            passwort: 'bier',
-            rolle: 'Superuser',
+            email: '1558d@mail.de',
+            passwort: 'Notbier',
+            rolle: 'Superuser'
         });
         this.users.push({
             id: this.getNextId(),
             vorname: 'Hello',
-            nachname: 'Spencer',
-            email: 'test@mail.de',
+            nachname: 'Super',
+            email: 'probe@mail.de',
             passwort: 'supersicher',
-            rolle: 'Admin',
+            rolle: 'Admin'
         });
         this.users.push({
             id: this.getNextId(),
-            vorname: 'Donald',
+            vorname: 'Dick',
             nachname: 'Duck',
-            email: 'entenhausen@mail.de',
+            email: '45hausen@mail.de',
             passwort: 'daisy',
-            rolle: 'User',
+            rolle: 'User'
         });
         this.users.push({
             id: this.getNextId(),
-            vorname: 'Milan',
-            nachname: 'Sens',
-            email: 'Linux@mail.de',
-            passwort: 'zugegeben',
-            rolle: 'Superuser',
+            vorname: 'Yaser',
+            nachname: 'rahhal',
+            email: 'L86@yahoo.fr',
+            passwort: 'yes12',
+            rolle: 'Superuser'
         });
         this.users.push({
             id: this.getNextId(),
-            vorname: 'Christian',
+            vorname: 'Ahmoud',
             nachname: 'Peter',
             email: 'hallo@mail.de',
             passwort: 'quatsch',
-            rolle: 'Admin',
+            rolle: 'Admin'
         });
         this.users.push({
             id: this.getNextId(),
-            vorname: 'Garfield',
-            nachname: 'Katze',
-            email: 'john@mail.de',
+            vorname: 'Jaafar',
+            nachname: 'Merkel',
+            email: 'Mer45@mail.de',
             passwort: 'lasagne',
-            rolle: 'Admin',
+            rolle: 'Admin'
         });
         this.users.push({
             id: this.getNextId(),
-            vorname: 'John',
+            vorname: 'Phillip',
             nachname: 'Doe',
             email: 'test@mail.de',
             passwort: 'passwort',
-            rolle: 'User',
+            rolle: 'User'
         });
         this.users.push({
             id: this.getNextId(),
-            vorname: 'test',
+            vorname: 'Vincent',
             nachname: 'einnachname',
             email: 'test@mail.de',
             passwort: 'supersicher',
-            rolle: 'Admin',
+            rolle: 'Admin'
         });
         return this.users;
     };
@@ -251,4 +252,4 @@ deleteUserById
 editUserById
 getAllUsersSorted
 */
-exports.default = App;
+exports["default"] = App;

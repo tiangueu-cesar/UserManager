@@ -1,0 +1,19 @@
+{
+  "name": "usermanCS",
+  "version": "1.0.0",
+  "description": "userman client-server",
+  "main": "usermanCS.ts",
+  "author": "Peter Kneisel",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@git.thm.de:webP-wbs/userman.git"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/node": "^8.10.8"
+  }
+}

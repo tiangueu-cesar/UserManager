@@ -6,13 +6,12 @@ class App {
     };
 
     private loadUsers() {
-        $.ajax('/api/users',
-            {
+        $.ajax('/api/users', {
                 success: this.createUserTable
             });
     }
 
-    //https://stackoverflow.com/questions/19156148/i-want-to-remove-double-quotes-from-a-string/43220059
+
     private getUser(data) {
         $('#vorname').val(JSON.stringify(data.vorname).replace(/(^"|"$)/g, ''));
         $('#nachname').val(JSON.stringify(data.nachname).replace(/(^"|"$)/g, ''));

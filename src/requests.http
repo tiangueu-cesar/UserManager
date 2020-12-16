@@ -2,10 +2,11 @@
 GET http://localhost:5000/api/users
 
 ###
+
 POST http://localhost:5000/api/users
 Content-Type: application/json
 
-{"vorname": "test2",  "nachname": "einnachname2",   "email": "test@mail.de2",   "passwort": "supersicher2",  "rolle": "Admin2"}
+{"vorname": "Jordan",  "nachname": "dilane",   "email": "probe@mail.de2",   "passwort": "super2",  "rolle": "Admin2"}
 
 ###
 GET http://localhost:5000/api/users/testUsers
@@ -15,11 +16,11 @@ POST http://localhost:5000/api/users/testUsers
 Content-Type: application/json
 
 [
-{"vorname": "Schild",  "nachname": "Kröte",   "email": "zoo@mail.de2",   "passwort": "supersicher2",  "rolle": "User"},
-{"vorname": "Katze",  "nachname": "Miau",   "email": "test@mail.de2",   "passwort": "supersicher2",  "rolle": "Admin"},
-{"vorname": "Franz",  "nachname": "Kafka",   "email": "vaterkonfikt@mail.de",   "passwort": "Käfer",  "rolle": "User"},
-{"vorname": "Theodor Wiesengrund",  "nachname": "Adorno",   "email": "frankfurterschule@mail.de",   "passwort": "Dialektik",  "rolle": "Superuser"},
-{"vorname": "Alan",  "nachname": "Turing",   "email": "automat@mail.de",   "passwort": "enigma",  "rolle": "Supersicher"}
+{"vorname": "iva",  "nachname": "müller",   "email": "gf12@mail.de2",   "passwort": "frtg546",  "rolle": "Student"},
+{"vorname": "Jordan",  "nachname": "Überall",   "email": "test@mail.de2",   "passwort": "4587",  "rolle": "Student"},
+{"vorname": "Adel",  "nachname": "Sari",   "email": "adelsari@mail.de",   "passwort": "King",  "rolle": "Student"},
+{"vorname": "Johana",  "nachname": "Müller",   "email": "fjohanna@mail.de",   "passwort": "miau",  "rolle": "Superuser"},
+{"vorname": "Yan",  "nachname": "brice",   "email": "mad@mail.de",   "passwort": "0123456",  "rolle": "Admin"}
 ]
 
 ###
@@ -29,7 +30,7 @@ GET http://localhost:5000/api/users/edit?ID=2
 POST http://localhost:5000/api/users/edit
 Content-Type: application/json
 
-{"id":"2","vorname": "Hello",  "nachname": "Pencer",   "email": "spencer@mail.de",   "passwort": "supersicher2",  "rolle": "User"}
+{"id":"1","vorname": "annabel",  "nachname": "schmidt",   "email": "annabel@mail.de",   "passwort": "ann01232",  "rolle": "Admin"}
 ###
 GET http://localhost:5000/api/users/delete?ID=1
 
@@ -56,3 +57,5 @@ GET http://localhost:5000/api/users/rolleFilter?wordpart=User
 
 ###
 DELETE http://localhost:5000/api/users
+
+###

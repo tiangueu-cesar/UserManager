@@ -1,8 +1,30 @@
+
+h1{
+  font-weight: bold;
+  font-size: 200px;
+  font-family: "Times New Roman";
+}
+head{
+    background-color: #8fd19e;
+}
 body {
+  background-image: url("programmierung-504705566.jpg");
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #d19647;
 }
 
 a {
-  color: #00B7FF;
+  color: #1e7e34;
+}
+span{
+  font-weight: bold;
+  font-size: 25px;
+  font-family: "Times New Roman";
+}
+label{
+ color: black;
+}
+hr{
+   background-color: black;
 }

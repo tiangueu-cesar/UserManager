@@ -1,0 +1,30 @@
+/* Define padding because of fixed header and footer */
+body {
+    padding:40px 0;
+}
+
+/* fluid container fills width on small devices */
+.container-fluid  {
+    max-width: 405px;
+    text-align: center;
+}
+
+/* arrange icons and define cursor when hovering */
+.fa-trash, .fa-pencil {
+    padding-top: 4px;
+}
+.fa-trash:hover, .fa-pencil:hover {
+    cursor: pointer;
+}
+
+/* ensure input-fields to fill 100% of width - and some nice padding */
+input {
+    max-width: 50%;
+    padding-left: 10px;
+}
+
+/* change effect of collapsing (only in #contentArea): do not roll-in */
+#contentArea .collapsing {
+    -webkit-transition: none;
+    transition: none;
+}

@@ -1,0 +1,7 @@
+{
+  "name"        : "userman",
+  "version"     : "1.0.0",
+  "description" : "a simple user manager",
+  "title"       : "userman: a simple user manager",
+  "url"         : "http://localhost:8080"
+}

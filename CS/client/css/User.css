@@ -1,0 +1,37 @@
+#form div  {
+    width:90px;
+    margin:10px 0 0 20px;
+    text-align:right;
+    display:inline-block;
+}
+
+button {
+    width:80px;
+    margin:0 5px 0 0;
+    text-align:center
+}
+
+.btn {
+    white-space:normal !important;
+    word-wrap:break-word;
+}
+
+#serverMessage  {
+    height:60px;
+    margin:40px 0 0 20px;
+    font-weight: revert;
+    font-size:1.5em;
+}
+
+td     {
+    text-align:center;
+    width : 100px;
+}
+span.forme{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+table  {
+
+}

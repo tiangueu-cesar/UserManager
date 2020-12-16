@@ -1,0 +1,24 @@
+###
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{"vorname": "Ammar",  "nachname": "Labec",   "email": "@email.de",   "passwort": "dasd",  "rolle": "Admin1"}
+
+###
+GET http://localhost:8080/user/0
+###
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{"id":"1","vorname": "Aboahmad",  "nachname": "Aboahmad",   "email": "aboahmad@mail.de",   "passwort": "aboahmad01232",  "rolle": "Admin"}
+###
+GET http://localhost:8080/users/sortart/id
+###
+GET http://localhost:8080/users/sortart/rolle
+###
+GET http://localhost:8080/users/sortart/nachname
+###
+GET  http://localhost:8080/users/sortart/vorname
+###
+DELETE http://localhost:8080/user/1
+###

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/UserManager.iml" filepath="$PROJECT_DIR$/.idea/UserManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/userman_ajaxSearch.iml" filepath="$PROJECT_DIR$/.idea/userman_ajaxSearch.iml" />
     </modules>
   </component>
 </project>
